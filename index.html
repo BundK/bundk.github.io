@@ -33,7 +33,10 @@ h2{font-size:clamp(1.9rem,4.2vw,2.9rem);line-height:1.1}
 h2 em{display:block}
 h2.one-line em{display:inline}
 h3{font-size:1.3rem;font-weight:600;line-height:1.25}
-p{margin:0}
+p{margin:0;text-wrap:pretty}
+li,dt,dd{text-wrap:pretty}
+h1,h2,h3,.situation-sub,.one-contact,.hero-sub{text-wrap:balance}
+.nobr{white-space:nowrap}
 ul,ol{margin:0;padding:0;list-style:none}
 
 .skip{position:absolute;left:1rem;top:-4rem;background:var(--ink);color:var(--bg);padding:.6rem 1rem;z-index:10;text-decoration:none}
@@ -51,7 +54,9 @@ ul,ol{margin:0;padding:0;list-style:none}
 
 /* Einstieg */
 .hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(2rem,5vw,4rem);align-items:center;padding-block:clamp(2rem,6vw,4rem) clamp(4rem,9vw,6.5rem)}
-h1{font-size:clamp(2rem,8.4vw,4.6rem);line-height:1.02}
+.hero-text{container-type:inline-size}
+h1{font-size:clamp(2rem,8.4vw,4.6rem);line-height:1.02;overflow-wrap:normal;hyphens:manual}
+@supports (font-size:1cqi){h1{font-size:min(4.6rem,10cqi)}}
 h1 em{display:block}
 .hero-sub{font-size:clamp(1.15rem,2.2vw,1.4rem);color:var(--ink);margin-top:1.4rem}
 .region{color:var(--sand-dark);font-weight:600;margin-top:.5rem}
@@ -63,6 +68,13 @@ h1 em{display:block}
 .cta{display:inline-flex;align-items:center;gap:.75rem;background:var(--blue);color:#fff;text-decoration:none;font-weight:600;font-size:1.15rem;padding:1rem 1.9rem;border-radius:999px;transition:background .15s}
 .cta:hover{background:var(--blue-dark)}
 .cta svg{flex:none}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem}
+.cta-note{margin-top:.9rem;font-size:1rem;color:var(--text);max-width:34rem}
+.contact .cta-note-light{margin-top:1rem;font-size:1.02rem;color:#EEF2F6}
+.cta-ghost{background:transparent;color:var(--blue-dark);box-shadow:inset 0 0 0 2px var(--blue)}
+.cta-ghost:hover{background:rgba(74,115,145,.1)}
+.cta-outline-light{background:transparent;color:var(--bg);box-shadow:inset 0 0 0 2px var(--sand-light)}
+.cta-outline-light:hover{background:rgba(255,255,255,.1)}
 
 /* Situation */
 .situation{background:var(--blue);color:var(--bg);padding-block:clamp(3.5rem,8vw,6rem)}
@@ -113,7 +125,7 @@ h1 em{display:block}
 .contact h2{color:var(--bg)}
 .contact h2 em{color:var(--sand-light)}
 .contact p{margin-top:1.25rem;font-size:1.2rem}
-.contact .cta{margin-top:2rem}
+.contact .cta-row{margin-top:2rem}
 .cta-light{background:var(--bg);color:var(--blue-dark)}
 .cta-light:hover{background:#fff}
 .region-light{color:var(--sand-light)}
@@ -176,10 +188,17 @@ h1 em{display:block}
       <li>Räumung noch diese Woche</li>
       <li>Inklusive Entsorgung</li>
     </ul>
-    <a class="cta" href="mailto:office@bundk.at?subject=Anfrage%20Haushaltsaufl%C3%B6sung">
-      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="1" width="20" height="14" rx="2"/><path d="M1.5 1.8 11 9l9.5-7.2"/></svg>
-      Anfrage per E-Mail
-    </a>
+    <div class="cta-row">
+      <a class="cta" href="tel:+436769312280">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.5l2 5-2.5 1.6a11 11 0 0 0 5.9 5.9l1.6-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"/></svg>
+        <span class="nobr">0676 931 22 80</span>
+      </a>
+      <a class="cta cta-ghost" href="mailto:office@bundk.at?subject=Anfrage%20Haushaltsaufl%C3%B6sung&amp;body=Guten%20Tag%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Haushaltsaufl%C3%B6sung.%0A%0AOrt%3A%0AFl%C3%A4che%20%28ca.%20m%C2%B2%29%3A%0AEntfernung%20Parkplatz%20bis%20Haust%C3%BCr%20%28ca.%20m%29%3A%0AStockwerk%20/%20gibt%20es%20einen%20Lift%3F%3A%0AWie%20voll%20ist%20es%3F%20%28wenig%20/%20normal%20/%20sehr%20voll%29%3A%0AGew%C3%BCnschter%20Termin%3A%0ATelefonnummer%20f%C3%BCr%20R%C3%BCckfragen%3A%0A%0AFotos%20h%C3%A4nge%20ich%20gerne%20an.%0A%0AFreundliche%20Gr%C3%BC%C3%9Fe%0A">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="1" width="20" height="14" rx="2"/><path d="M1.5 1.8 11 9l9.5-7.2"/></svg>
+        Anfrage per E-Mail
+      </a>
+    </div>
+    <p class="cta-note">Nicht erreicht? Wir rufen Sie noch am selben Tag zurück.</p>
   </div>
   <svg class="hero-art" viewBox="0 0 380 320" fill="none" aria-hidden="true">
     <circle cx="190" cy="168" r="140" fill="#EFE3CC"/>
@@ -245,7 +264,7 @@ h1 em{display:block}
   <ol class="timeline">
     <li>
       <h3>Anfrage</h3>
-      <ul><li>E-Mail schreiben</li><li>Fotos schicken</li><li>Oder um Rückruf bitten</li></ul>
+      <ul><li>Anrufen oder <span class="nobr">E-Mail</span> schreiben</li><li>Fotos schicken</li><li>Oder um Rückruf bitten</li></ul>
     </li>
     <li>
       <h3>Fixpreis</h3>
@@ -292,11 +311,18 @@ h1 em{display:block}
 <section id="kontakt" class="contact" aria-labelledby="kontakt-titel">
   <div class="wrap narrow">
     <h2 id="kontakt-titel">Eine Sorge weniger – <em>nur eine Nachricht entfernt.</em></h2>
-    <p>Schreiben Sie uns, schicken Sie Fotos oder bitten Sie um Rückruf. Wir melden uns persönlich bei Ihnen.</p>
-    <a class="cta cta-light" href="mailto:office@bundk.at?subject=Anfrage%20Haushaltsaufl%C3%B6sung">
-      <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="1" width="20" height="14" rx="2"/><path d="M1.5 1.8 11 9l9.5-7.2"/></svg>
-      office@bundk.at
-    </a>
+    <p>Rufen Sie an, schreiben Sie uns oder schicken Sie Fotos. Wir sind persönlich für Sie da.</p>
+    <div class="cta-row">
+      <a class="cta cta-light" href="tel:+436769312280">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.5l2 5-2.5 1.6a11 11 0 0 0 5.9 5.9l1.6-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 5.5a2 2 0 0 1 2-2z"/></svg>
+        <span class="nobr">0676 931 22 80</span>
+      </a>
+      <a class="cta cta-outline-light" href="mailto:office@bundk.at?subject=Anfrage%20Haushaltsaufl%C3%B6sung&amp;body=Guten%20Tag%2C%0A%0Aich%20interessiere%20mich%20f%C3%BCr%20eine%20Haushaltsaufl%C3%B6sung.%0A%0AOrt%3A%0AFl%C3%A4che%20%28ca.%20m%C2%B2%29%3A%0AEntfernung%20Parkplatz%20bis%20Haust%C3%BCr%20%28ca.%20m%29%3A%0AStockwerk%20/%20gibt%20es%20einen%20Lift%3F%3A%0AWie%20voll%20ist%20es%3F%20%28wenig%20/%20normal%20/%20sehr%20voll%29%3A%0AGew%C3%BCnschter%20Termin%3A%0ATelefonnummer%20f%C3%BCr%20R%C3%BCckfragen%3A%0A%0AFotos%20h%C3%A4nge%20ich%20gerne%20an.%0A%0AFreundliche%20Gr%C3%BC%C3%9Fe%0A">
+        <svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="1" y="1" width="20" height="14" rx="2"/><path d="M1.5 1.8 11 9l9.5-7.2"/></svg>
+        office@bundk.at
+      </a>
+    </div>
+    <p class="cta-note cta-note-light">Nicht erreicht? Wir rufen Sie noch am selben Tag zurück. Oder schreiben Sie uns vorab eine <span class="nobr">E-Mail</span>, am besten mit Fotos, Fläche und Stockwerk. Dann können wir Ihnen gleich einen Richtpreis nennen.</p>
     <p class="region region-light">Einsatzgebiet: Linz und ganz Oberösterreich</p>
   </div>
 </section>
@@ -309,7 +335,8 @@ h1 em{display:block}
   <h2 id="impressum-titel">Impressum</h2>
   <dl>
     <dt>Unternehmen</dt><dd>BK Räumungen<br>Inhaber: Elmin Bešić</dd>
-    <dt>Anschrift</dt><dd>Josef-Schlegel-Straße 13<br>4020 Linz, Österreich</dd>
+    <dt>Anschrift</dt><dd><span class="nobr">Josef-Schlegel-Straße</span> 13<br>4020 Linz, Österreich</dd>
+    <dt>Telefon</dt><dd><a href="tel:+436769312280" class="nobr">+43 676 931 22 80</a></dd>
     <dt>E-Mail</dt><dd><a href="mailto:office@bundk.at">office@bundk.at</a></dd>
     <dt>Gewerbe</dt><dd>Entrümpelung (Räumung durch Entfernung wertlosen Gutes)</dd>
     <dt>Behörde gem. ECG</dt><dd>Magistrat der Stadt Linz</dd>
@@ -317,11 +344,11 @@ h1 em{display:block}
     <dt>Rechtsvorschrift</dt><dd>Gewerbeordnung, abrufbar unter <a href="https://www.ris.bka.gv.at">www.ris.bka.gv.at</a></dd>
     <dt>Umsatzsteuer</dt><dd>Kleinunternehmer, umsatzsteuerbefreit gem. § 6 Abs. 1 Z 27 UStG</dd>
   </dl>
-  <p>Offenlegung nach § 25 Mediengesetz: Medieninhaber ist Elmin Bešić, BK Räumungen, Josef-Schlegel-Straße 13, 4020 Linz. Diese Website informiert über die Dienstleistungen von BK Räumungen.</p>
+  <p>Offenlegung nach § 25 Mediengesetz: Medieninhaber ist Elmin Bešić, BK Räumungen, <span class="nobr">Josef-Schlegel-Straße</span> 13, 4020 Linz. Diese Website informiert über die Dienstleistungen von BK Räumungen.</p>
 
   <h2 id="datenschutz">Datenschutz</h2>
-  <p>Diese Website verwendet keine Cookies, keine Analyse-Werkzeuge und lädt keine Inhalte von anderen Anbietern. Die Seite wird über GitHub Pages (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet GitHub technisch notwendige Daten wie Ihre IP-Adresse, um die Seite auszuliefern und vor Missbrauch zu schützen.</p>
-  <p>Wenn Sie uns schreiben oder Fotos schicken, verwenden wir Ihre Angaben nur, um Ihre Anfrage zu bearbeiten und gegebenenfalls einen Auftrag abzuwickeln. Fotos und Kontaktdaten aus Anfragen, die zu keinem Auftrag führen, löschen wir nach Abschluss der Anfrage. Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten. Wenden Sie sich dafür an <a href="mailto:office@bundk.at">office@bundk.at</a>. Beschwerden können Sie bei der österreichischen Datenschutzbehörde einbringen.</p>
+  <p>Diese Website verwendet keine Cookies, keine <span class="nobr">Analyse-Werkzeuge</span> und lädt keine Inhalte von anderen Anbietern. Die Seite wird über <span class="nobr">GitHub Pages</span> (GitHub Inc., USA) bereitgestellt. Beim Aufruf verarbeitet GitHub technisch notwendige Daten wie Ihre <span class="nobr">IP-Adresse</span>, um die Seite auszuliefern und vor Missbrauch zu schützen.</p>
+  <p>Wenn Sie uns anrufen, schreiben oder Fotos schicken, verwenden wir Ihre Angaben nur, um Ihre Anfrage zu bearbeiten und gegebenenfalls einen Auftrag abzuwickeln. Fotos und Kontaktdaten aus Anfragen, die zu keinem Auftrag führen, löschen wir nach Abschluss der Anfrage. Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer Daten. Wenden Sie sich dafür an <a href="mailto:office@bundk.at">office@bundk.at</a>. Beschwerden können Sie bei der österreichischen Datenschutzbehörde einbringen.</p>
 </section>
 
 </main>
